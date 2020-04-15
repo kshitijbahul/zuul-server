@@ -1,0 +1,20 @@
+server:
+  port: 7070
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:7050/eureka"
+
+zuul:
+  debug:
+    request: true
+  host:
+    maxTotalConnections: 200
+    maxPerRouteConnections : 20
+  routes:
+    #need to figure routes , what  I figured productservice just below is important in the requst made to zuul,
+    #the significance of path except for extracting params is still not clear
+    productservice:
+      paths: /productservice/**
+      stripPrefix: true
+      serviceId: PRODUCT-SERVICE
